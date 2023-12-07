@@ -72,7 +72,7 @@ pipeline {
         stage ("Build Image") {
             steps {
                 script {
-                    sh "docker build -t 353928175117.dkr.ecr.us-east-1.amazonaws.com/my-jenkins ."
+                    sh "sudo docker build -t 353928175117.dkr.ecr.us-east-1.amazonaws.com/my-jenkins ."
                 }
             }
         }
