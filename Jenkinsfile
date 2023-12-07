@@ -57,9 +57,9 @@ pipeline {
     }
 
     stages {
-        stage {
+        stage ('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/obusorezekiel/docker-spring-boot']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/obusorezekiel/docker-spring-boot']])
             }
         }
 
