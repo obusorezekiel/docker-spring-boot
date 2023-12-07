@@ -72,14 +72,16 @@ pipeline {
         stage ("Build Image") {
             steps {
                 script {
-                    sh "sudo docker build -t 353928175117.dkr.ecr.us-east-1.amazonaws.com/my-jenkins ."
+                        withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker'){
+                            sh "sudo docker build -t 353928175117.dkr.ecr.us-east-1.amazonaws.com/my-jenkins ."
                 }
+            }
             }
         }
         
         stage ("Push to ECR") {
             steps {
-                script withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker'){
+                script {
                     sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 353928175117.dkr.ecr.us-east-1.amazonaws.com/my-jenkins"
                     sh "docker push 353928175117.dkr.ecr.us-east-1.amazonaws.com/my-jenkins:latest"
                     
