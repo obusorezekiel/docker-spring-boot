@@ -72,7 +72,7 @@ pipeline {
         stage ("Build Image") {
             steps {
                 script {
-                    docker.build registry
+                    sh "docker build -t 353928175117.dkr.ecr.us-east-1.amazonaws.com/my-jenkins ."
                 }
             }
         }
